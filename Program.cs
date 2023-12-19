@@ -7,6 +7,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddHsts(options =>
+{
+    options.Preload = true;
+    options.IncludeSubDomains = true;
+    options.MaxAge = TimeSpan.FromDays(60);
+    options.ExcludedHosts.Add("sarvarbekabduqodirov.uz");
+    options.ExcludedHosts.Add("www.sarvarbekabduqodirov.uz");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,7 +30,7 @@ app.UseCors(options =>
 });
 
 app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllers();
