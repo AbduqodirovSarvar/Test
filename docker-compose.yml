@@ -18,6 +18,7 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
+      - "80:88"
       - "443:8443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
@@ -26,6 +27,12 @@ services:
       - testapp
     networks:
       - test2
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+    command: certonly --webroot --webroot-path=/var/www/html --email abduqodirovsarvar.2002@gmail.com --agree-tos --no-eff-email --force-renewal -d job.sarvarbekabduqodirov.uz
 
 networks:
   test2:
