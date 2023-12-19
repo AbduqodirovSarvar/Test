@@ -18,7 +18,7 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - "88:88"
+      - "81:81"
       - "443:8443"
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
